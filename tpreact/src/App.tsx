@@ -4,9 +4,10 @@ import './App.css';
 import BeerList from "./BeerList";
 
 function App() {
-  return (
+
+    return (
     <div className="App">
-      <BeerList beers={["beer1", "beer2"]} />
+      <BeerList/>
     </div>
   );
 }

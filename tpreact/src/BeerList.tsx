@@ -1,28 +1,41 @@
 import * as React from 'react';
-import Beer from "./Beer";
+import Beer, { BeerData } from './Beer';
+import {render} from "@testing-library/react";
+
 
 interface Props {
-    beers: string[];
 }
 
 interface State {
-    count: number;
+    beers: BeerData[];
 }
 
 class BeerList extends React.Component<Props, State> {
-    state: State = {
-        count: 0
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            beers : [{name:"beer1"}],
+        };
+    }
+    addBeer = (name: string): void => {
+        this.setState((state) => ({
+            beers: state.beers.concat({name}), // Add the new beer to the state
+        }));
     };
 
-    render () {
+
+    render() {
         return (
-            <ul>
-                {this.props.beers.map((x, i) =>
-                    <Beer name={x} />
-                )}
-            </ul>
+            <div>
+                <h1>Beer List</h1>
+                <ul>
+                    {this.state.beers.map((beer, index) => (
+                        <Beer key={index} beer={beer} />
+                    ))}
+                </ul>
+                <button onClick={() => this.addBeer(`Beer `)}>Add Beer</button>
+            </div>
         );
     }
 }
-
 export default BeerList;
