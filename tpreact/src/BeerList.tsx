@@ -15,7 +15,7 @@ class BeerList extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            beers : [{name:"beer1"}],
+            beers : [{name:"Pivo"}],
             newBeerName: "",
         };
     }
@@ -30,13 +30,19 @@ class BeerList extends React.Component<Props, State> {
 
     };
 
+    removeBeer = (index: number): void => {
+        this.setState((state) => ({
+            beers: state.beers.filter((_, i) => i !== index),
+        }));
+    };
+
     render() {
         return (
             <div>
                 <h1>Beer List</h1>
                 <ul>
                     {this.state.beers.map((beer, index) => (
-                        <Beer key={index} beer={beer}/>
+                        <Beer key={index} beer={beer} onRemove={() => this.removeBeer(index)}/>
                     ))}
                 </ul>
                 <input

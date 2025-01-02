@@ -7,6 +7,7 @@ function App() {
 
     return (
     <div className="App">
+        <a href="/about">About this app</a>
       <BeerList/>
     </div>
   );
